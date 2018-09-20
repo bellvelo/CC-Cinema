@@ -21,8 +21,32 @@ def save()
   @id = film["id"].to_i
 end
 
+def self.find(id)
+  "SELECT * FROM films WHERE id = $1"
+  values = [id]
+  customer = SqlRunner.run(sql, values).first
+  return Customer.new(customer)
+end
 
+def update()
+  sql ="
+  UPDATE films SET (title, price) = ($1, $2)
+  WHERE id = $3"
+  values = [@title, @price, @id]
+  SqlRunner.run(sql, values)
+end
 
+def self.delete_all
+  sql ="DELETE FROM customers"
+  SqlRunner.run(sql)
+end
+
+def delete()
+  sql =" DELETE FROM customers
+  WHERE id = $1"
+  values = [@id]
+  SqlRunner.run(sql, values)
+end
 
 
 #this is the end
