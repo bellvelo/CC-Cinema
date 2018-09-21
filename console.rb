@@ -74,17 +74,29 @@ ticket4 = Ticket.new ({
 ticket4.save()
 
 ############# TESTS #############
-## DELETE ##
-# customer1.delete()
 
-## UPDATE ##
+### MVP ###
+# customer1.delete()
 # customer1.name = "David"
 # customer1.update()
 # film2.price = 33
 # film2.update()
 # ticket1.film_id = 2
 # ticket1.update()
+## Show which films a customer has booked to see
+# customer2.what_tickets_bought
+## See which customers are coming to see one film.
+# film1.audience
 
+### BASIC EXTENSIONS ###
+## how many tickets tickets_bought by customer ##
+# customer1.number_tickets_bought
+# customer1.how_many_tickets
+## how mant tickets sold per film ##
+# film1.seats_sold()
+## Buying tickets should decrease the funds of the customer by the price
+# customer1.buy_tickets(film1)
+# customer1.update()
 
 
 
