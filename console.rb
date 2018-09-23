@@ -27,25 +27,25 @@ customer3.save()
 
 film1 = Film.new ({
   "title" => "Jaws",
-  "price" => 5
+  "price" => 5.00
   })
 film1.save()
 
 film2 = Film.new ({
   "title" => "The Godfather",
-  "price" => 10
+  "price" => 10.00
   })
 film2.save()
 
 film3 = Film.new ({
   "title" => "The Shining",
-  "price" => 10
+  "price" => 10.00
   })
 film3.save()
 
 film4 = Film.new ({
   "title" => "Annie Hall",
-  "price" => 5
+  "price" => 5.00
   })
 film4.save()
 
@@ -85,12 +85,11 @@ ticket4.save()
 # ticket1.update()
 ## Show which films a customer has booked to see
 # customer2.what_tickets_bought
-## See which customers are coming to see one film.
+# ## See which customers are coming to see one film.
 # film1.audience
 
 ### BASIC EXTENSIONS ###
 ## how many tickets tickets_bought by customer ##
-# customer1.number_tickets_bought
 # customer1.how_many_tickets
 ## how mant tickets sold per film ##
 # film1.seats_sold()
@@ -98,6 +97,9 @@ ticket4.save()
 # customer1.buy_tickets(film1)
 # customer1.update()
 
+### practive methods ###
+# Ticket.most_popular()
+# customer1.average_ticket_price()
 
 
 binding.pry

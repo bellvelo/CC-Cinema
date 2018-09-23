@@ -1,5 +1,6 @@
 require_relative('../db/sql_runner')
-require_relative('ticket')
+require_relative('ticket')  # must be required here in order to new up the Ticket in buy_tickets method
+require_relative('film')
 
 class Customer
 
@@ -59,7 +60,7 @@ class Customer
   end
 
   def how_many_tickets # how many tickets has the customer purchased
-    count = self.what_tickets_bought().count
+    self.what_tickets_bought().count
   end
 
   def buy_tickets(film)
@@ -68,6 +69,20 @@ class Customer
       new_ticket = Ticket.new({'customer_id' => @id, 'film_id' => film.id})
       new_ticket.save()
     end
+  end
+
+  def average_ticket_price  # practice methods
+    sql = "
+    SELECT films.*
+    FROM films INNER JOIN tickets
+    ON films.id = tickets.film_id
+    WHERE customer_id = $1"
+    values = [@id]
+    all_tickets = SqlRunner.run(sql, values)
+    ticket_array = all_tickets.map{|tix| Film.new(tix)}
+    tickets = ticket_array.map{|tix| tix.price}
+    total_price = tickets.sum.to_f
+    ave_price = total_price / self.how_many_tickets
   end
 
 

@@ -46,5 +46,16 @@ class Ticket
     SqlRunner.run(sql, values)
   end
 
+  def self.most_popular  # practice methods
+    sql = "
+      SELECT films.*
+      FROM films INNER JOIN tickets
+      ON films.id = tickets.film_id"
+    results = SqlRunner.run(sql)
+    ticket_array = results.map{|tix| Film.new(tix)}
+    tickets = ticket_array.map{|stubs| stubs.title}
+    number_one = tickets.max_by{|film| tickets.count(film)}
+  end
+
   #this is the end
 end
